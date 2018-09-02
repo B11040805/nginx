@@ -43,7 +43,7 @@ ngx_array_destroy(ngx_array_t *a)
     }
 }
 
-
+// 向数组中添加一个元素，返回新元素的地址
 void *
 ngx_array_push(ngx_array_t *a)
 {
@@ -52,7 +52,7 @@ ngx_array_push(ngx_array_t *a)
     ngx_pool_t  *p;
 
     if (a->nelts == a->nalloc) {
-
+        // 空间用完了
         /* the array is full */
 
         size = a->size * a->nalloc;
@@ -72,7 +72,7 @@ ngx_array_push(ngx_array_t *a)
 
         } else {
             /* allocate a new array */
-
+            // 动态申请空间是原来的2倍
             new = ngx_palloc(p, 2 * size);
             if (new == NULL) {
                 return NULL;
@@ -90,7 +90,7 @@ ngx_array_push(ngx_array_t *a)
     return elt;
 }
 
-
+// 向数组中添加n个元素，返回n个元素中第一个元素的地址
 void *
 ngx_array_push_n(ngx_array_t *a, ngx_uint_t n)
 {

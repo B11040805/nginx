@@ -472,6 +472,9 @@ ngx_conf_bitmask_t  ngx_http_upstream_ignore_headers_masks[] = {
 };
 
 
+/**
+ * 创建upstream
+ * */
 ngx_int_t
 ngx_http_upstream_create(ngx_http_request_t *r)
 {
@@ -505,6 +508,7 @@ ngx_http_upstream_create(ngx_http_request_t *r)
 }
 
 
+// 启动upstream
 void
 ngx_http_upstream_init(ngx_http_request_t *r)
 {

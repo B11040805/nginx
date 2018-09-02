@@ -118,7 +118,7 @@ ngx_reset_pool(ngx_pool_t *pool)
     pool->large = NULL;
 }
 
-
+// 申请内存
 void *
 ngx_palloc(ngx_pool_t *pool, size_t size)
 {

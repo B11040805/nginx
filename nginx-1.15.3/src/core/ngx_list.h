@@ -15,10 +15,11 @@
 
 typedef struct ngx_list_part_s  ngx_list_part_t;
 
+//单向链表
 struct ngx_list_part_s {
-    void             *elts;
-    ngx_uint_t        nelts;
-    ngx_list_part_t  *next;
+    void             *elts; // 首地址
+    ngx_uint_t        nelts; // 
+    ngx_list_part_t  *next; // 下一个指针
 };
 
 

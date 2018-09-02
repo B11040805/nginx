@@ -148,9 +148,9 @@ typedef struct {
 typedef struct {
     ngx_http_upstream_srv_conf_t    *upstream;
 
-    ngx_msec_t                       connect_timeout;
-    ngx_msec_t                       send_timeout;
-    ngx_msec_t                       read_timeout;
+    ngx_msec_t                       connect_timeout; // 连接超时
+    ngx_msec_t                       send_timeout; //发送TCP超时
+    ngx_msec_t                       read_timeout; // 接收TCP超时
     ngx_msec_t                       next_upstream_timeout;
 
     size_t                           send_lowat;
@@ -313,10 +313,10 @@ typedef struct {
 typedef void (*ngx_http_upstream_handler_pt)(ngx_http_request_t *r,
     ngx_http_upstream_t *u);
 
-
+// upstream的结构想要什么功能呢
 struct ngx_http_upstream_s {
-    ngx_http_upstream_handler_pt     read_event_handler;
-    ngx_http_upstream_handler_pt     write_event_handler;
+    ngx_http_upstream_handler_pt     read_event_handler; // 事件模型读句柄
+    ngx_http_upstream_handler_pt     write_event_handler;// 事件模型写句柄
 
     ngx_peer_connection_t            peer;
 
@@ -327,16 +327,16 @@ struct ngx_http_upstream_s {
     ngx_output_chain_ctx_t           output;
     ngx_chain_writer_ctx_t           writer;
 
-    ngx_http_upstream_conf_t        *conf;
+    ngx_http_upstream_conf_t        *conf; // upstream conf文件
     ngx_http_upstream_srv_conf_t    *upstream;
 #if (NGX_HTTP_CACHE)
     ngx_array_t                     *caches;
 #endif
 
     ngx_http_upstream_headers_in_t   headers_in;
-
+    // 通过resolved可以直接指定上游服务器地址
     ngx_http_upstream_resolved_t    *resolved;
-
+    // buffer 成员存储接收子上游服务器发来的响应内容
     ngx_buf_t                        from_client;
 
     ngx_buf_t                        buffer;
@@ -353,6 +353,7 @@ struct ngx_http_upstream_s {
 #if (NGX_HTTP_CACHE)
     ngx_int_t                      (*create_key)(ngx_http_request_t *r);
 #endif
+    // 疑问，这是什么语法
     ngx_int_t                      (*create_request)(ngx_http_request_t *r);
     ngx_int_t                      (*reinit_request)(ngx_http_request_t *r);
     ngx_int_t                      (*process_header)(ngx_http_request_t *r);

@@ -26,7 +26,7 @@ ngx_list_create(ngx_pool_t *pool, ngx_uint_t n, size_t size)
     return list;
 }
 
-
+//链表后面追加一个元素
 void *
 ngx_list_push(ngx_list_t *l)
 {

@@ -19,12 +19,13 @@ typedef ngx_int_t   ngx_rbtree_key_int_t;
 
 typedef struct ngx_rbtree_node_s  ngx_rbtree_node_t;
 
+// 红黑数
 struct ngx_rbtree_node_s {
-    ngx_rbtree_key_t       key;
-    ngx_rbtree_node_t     *left;
-    ngx_rbtree_node_t     *right;
-    ngx_rbtree_node_t     *parent;
-    u_char                 color;
+    ngx_rbtree_key_t       key; // 
+    ngx_rbtree_node_t     *left; // 左指针
+    ngx_rbtree_node_t     *right; // 右指针
+    ngx_rbtree_node_t     *parent; // 父指针
+    u_char                 color; // 颜色
     u_char                 data;
 };
 

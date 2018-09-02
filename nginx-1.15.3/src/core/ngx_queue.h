@@ -15,21 +15,23 @@
 
 typedef struct ngx_queue_s  ngx_queue_t;
 
+// 双向链表
+// 不存储元素，只有链表
 struct ngx_queue_s {
     ngx_queue_t  *prev;
     ngx_queue_t  *next;
 };
 
-
+// 初始化
 #define ngx_queue_init(q)                                                     \
     (q)->prev = q;                                                            \
     (q)->next = q
 
-
+//判断链表是否为空
 #define ngx_queue_empty(h)                                                    \
     (h == (h)->prev)
 
-
+// 把h插入到x的前面
 #define ngx_queue_insert_head(h, x)                                           \
     (x)->next = (h)->next;                                                    \
     (x)->next->prev = x;                                                      \
@@ -39,14 +41,14 @@ struct ngx_queue_s {
 
 #define ngx_queue_insert_after   ngx_queue_insert_head
 
-
+//把h插入到x的后面
 #define ngx_queue_insert_tail(h, x)                                           \
     (x)->prev = (h)->prev;                                                    \
     (x)->prev->next = x;                                                      \
     (x)->next = h;                                                            \
     (h)->prev = x
 
-
+// 获取第一个节点
 #define ngx_queue_head(h)                                                     \
     (h)->next
 
