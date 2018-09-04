@@ -13,7 +13,7 @@
 #include <ngx_core.h>
 #include <ngx_event.h>
 
-
+// 线程池，维持n个线程的线程池，有线程挂掉，能自动起来一个进程
 struct ngx_thread_task_s {
     ngx_thread_task_t   *next;
     ngx_uint_t           id;

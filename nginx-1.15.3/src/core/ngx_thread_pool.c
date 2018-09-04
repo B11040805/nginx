@@ -42,10 +42,12 @@ struct ngx_thread_pool_s {
     ngx_uint_t                line;
 };
 
-
+// 线程池初始化
 static ngx_int_t ngx_thread_pool_init(ngx_thread_pool_t *tp, ngx_log_t *log,
     ngx_pool_t *pool);
+// 线程池销毁
 static void ngx_thread_pool_destroy(ngx_thread_pool_t *tp);
+// 线程退出
 static void ngx_thread_pool_exit_handler(void *data, ngx_log_t *log);
 
 static void *ngx_thread_pool_cycle(void *data);

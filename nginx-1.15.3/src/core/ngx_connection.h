@@ -16,17 +16,17 @@
 typedef struct ngx_listening_s  ngx_listening_t;
 
 struct ngx_listening_s {
-    ngx_socket_t        fd;
+    ngx_socket_t        fd; // socket套接字句柄
 
-    struct sockaddr    *sockaddr;
+    struct sockaddr    *sockaddr; // 监听socket的地址
     socklen_t           socklen;    /* size of sockaddr */
-    size_t              addr_text_max_len;
-    ngx_str_t           addr_text;
+    size_t              addr_text_max_len; // 存储IP地址的字符串的最大长度
+    ngx_str_t           addr_text;// 以字符串形式存储IP地址
 
-    int                 type;
+    int                 type; // socket 类型，type=SOCK_STREAM 时表示TCP
 
-    int                 backlog;
-    int                 rcvbuf;
+    int                 backlog; // TCP实现监听时的backlog队列，它表示允许正在通过三次握手建立TCP连接单还没有任何进程开始处理的最大个数
+    int                 rcvbuf; // 接收buf
     int                 sndbuf;
 #if (NGX_HAVE_KEEPALIVE_TUNABLE)
     int                 keepidle;

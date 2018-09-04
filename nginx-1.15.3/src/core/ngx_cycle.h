@@ -21,7 +21,7 @@
 #define NGX_DEBUG_POINTS_STOP   1
 #define NGX_DEBUG_POINTS_ABORT  2
 
-
+// master管理进程、worker工作进程、cache manager 进程都拥有唯一的ngx_cycle_t结构体
 typedef struct ngx_shm_zone_s  ngx_shm_zone_t;
 
 typedef ngx_int_t (*ngx_shm_zone_init_pt) (ngx_shm_zone_t *zone, void *data);
@@ -38,7 +38,7 @@ struct ngx_shm_zone_s {
 
 struct ngx_cycle_s {
     void                  ****conf_ctx;
-    ngx_pool_t               *pool;
+    ngx_pool_t               *pool; // 内存池
 
     ngx_log_t                *log;
     ngx_log_t                 new_log;
@@ -56,7 +56,7 @@ struct ngx_cycle_s {
     ngx_queue_t               reusable_connections_queue;
     ngx_uint_t                reusable_connections_n;
 
-    ngx_array_t               listening;
+    ngx_array_t               listening; // 动态数组listening,他的每个元素都是ngx_listening_t结构体，每个结构体表示一个需要监听的接口。
     ngx_array_t               paths;
 
     ngx_array_t               config_dump;
